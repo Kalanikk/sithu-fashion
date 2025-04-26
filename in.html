@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logo Gallery & Contact</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    nav { background-color: #f8f8f8; padding: 10px; text-align: center; }
+    nav a { margin: 0 15px; text-decoration: none; color: #333; font-weight: bold; font-size: 18px; }
+
+    .gallery { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px; justify-content: center; }
+    .gallery img { width: 150px; height: auto; cursor: pointer; border: 2px solid #ccc; border-radius: 10px; transition: 0.3s; }
+    .gallery img:hover { border-color: #555; }
+
+    .modal, .qr-modal {
+      display: none; position: fixed; z-index: 1000;
+      left: 0; top: 0; width: 100%; height: 100%;
+      overflow: auto; background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content, .qr-content {
+      background-color: #fff; margin: 5% auto; padding: 20px;
+      border-radius: 10px; width: 90%; max-width: 400px; position: relative;
+    }
+
+    .close { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+    .close:hover { color: black; }
+
+    form input, form select, form textarea, form button {
+      width: 100%; margin-top: 10px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;
+    }
+
+    form button {
+      background-color: #4CAF50; color: white; border: none;
+    }
+
+    form button:hover { background-color: #45a049; }
+
+    #tshirtPreview {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin: 10px auto;
+      border-radius: 10px;
+      border: 2px dashed #ccc;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #tshirtPreview img {
+      width: 100%;
+      height: auto;
+      z-index: 1;
+    }
+
+    .color-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      border-radius: 10px;
+      opacity: 0.6;
+    }
+
+    .price-info, .delivery-note {
+      font-size: 14px; color: green; font-weight: bold; text-align: center;
+    }
+
+    #qrcode { margin-top: 15px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="home1.html">Home</a>
+</nav>
+
+<div id="gallery" class="gallery">
+  
+  <img src="logo1.png.jpg" alt="Logo 1" onclick="openForm('Logo 1')">
+  <img src="logo2.png.jpg" alt="Logo 2" onclick="openForm('Logo 2')">
+  <img src="logo3.png.jpg" alt="Logo 3" onclick="openForm('Logo 3')">
+  <img src="logo4.jpg.jpg" alt="Logo 4" onclick="openForm('Logo 4')">
+  <img src="logo5.jpg.jpg" alt="Logo 5" onclick="openForm('Logo 5')">
+  <img src="logo6.jpg.jpg" alt="Logo 6" onclick="openForm('Logo 6')">
+  <img src="logo7.jpg.jpg" alt="Logo 7" onclick="openForm('Logo 7')">
+  <img src="logo8.jpg.jpg" alt="Logo 8" onclick="openForm('Logo 8')">
+  <img src="logo9.jpg.png" alt="Logo 9" onclick="openForm('Logo 9')">
+  <img src="logo10.jpg.jpg" alt="Logo 10" onclick="openForm('Logo 10')">
+  <img src="logo11.jpg.jpg" alt="Logo 11" onclick="openForm('Logo 11')">
+  <img src="logo12.jpg.jpg" alt="Logo 12" onclick="openForm('Logo 12')">
+  <img src="logo13.jpg.jpg" alt="Logo 13" onclick="openForm('Logo 13')">
+  <img src="logo14.jpg.jpg" alt="Logo 14" onclick="openForm('Logo 14')">
+  <img src="logo15.jpg.jpg" alt="Logo 15" onclick="openForm('Logo 15')">
+  <img src="logo16.jpg.jpg" alt="Logo 16" onclick="openForm('Logo 16')">
+  <img src="logo17.jpg.jpg" alt="Logo 17" onclick="openForm('Logo 17')">
+  <img src="logo18.jpg.png" alt="Logo 18" onclick="openForm('Logo 18')">
+  <img src="logo19.jpg.jpg" alt="Logo 19" onclick="openForm('Logo 19')">
+  <img src="logo 20.jpg.jpg" alt="Logo 20" onclick="openForm('Logo 20')">
+  <img src="logo21.jpg.jpg" alt="Logo 21" onclick="openForm('Logo 21')">
+  <img src="logo22.jpg.jpg" alt="Logo 22" onclick="openForm('Logo 22')">
+  <img src="im23.jpg.jpg" alt="Logo 23" onclick="openForm('Logo 23')">
+  <img src="im24.jpg.jpg" alt="Logo 24" onclick="openForm('Logo 24')">
+  <img src="im25.jpg.jpg" alt="Logo 20" onclick="openForm('Logo 20')">
+  <img src="im26.jpg.jpg" alt="Logo 21" onclick="openForm('Logo 21')">
+  <img src="im27.jpg.jpg" alt="Logo 22" onclick="openForm('Logo 22')">
+  <img src="im28.jpg.jpg" alt="Logo 23" onclick="openForm('Logo 23')">
+  
+  
+
+
+
+  
+</div>
+
+<div id="formModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeForm()">&times;</span>
+    <form id="orderForm">
+      <h2 id="selectedLogo">Selected Logo</h2>
+
+      <div id="tshirtPreview">
+        <div class="color-overlay" id="colorOverlay"></div>
+        <img src="tshirt-base.png" alt="T-shirt" id="tshirtImage">
+      </div>
+
+      <label for="price">Total Price (LKR):</label>
+      <input type="text" id="price" name="price" readonly required>
+      <div class="price-info" id="priceInfo">Price includes delivery 🚚✅</div>
+
+      <label for="size">Size:</label>
+      <select id="size" name="size" required>
+        <option>Small</option>
+        <option>Medium</option>
+        <option>Large</option>
+      </select>
+
+      <label for="color">T-Shirt Color:</label>
+      <select id="color" name="color" onchange="updateTshirtColor()" required>
+        <option>White</option>
+        <option>Black</option>
+        <option>Light Brown</option>
+      </select>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" min="1" required>
+
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="phone1">Phone Number 1:</label>
+      <input type="text" id="phone1" required>
+
+      <label for="phone2">Phone Number 2:</label>
+      <input type="text" id="phone2" required>
+
+      <label for="address">Address:</label>
+      <textarea id="address" required></textarea>
+
+      <div class="delivery-note">Delivery: FREE 🚚✅</div>
+      <input type="hidden" id="logoName" name="logo">
+
+      <button type="submit">Generate WhatsApp QR</button>
+    </form>
+  </div>
+</div>
+
+<div id="qrModal" class="qr-modal">
+  <div class="qr-content">
+    <span class="close" onclick="document.getElementById('qrModal').style.display='none'">&times;</span>
+    <h2>Scan QR to Chat</h2>
+    <div id="qrcode"></div>
+  </div>
+</div>
+
+<script>
+  const UNIT_PRICE = 1200, DISCOUNT = 300;
+
+  function openForm(logoName) {
+    const logoNumber = logoName.match(/\d+/)?.[0] || "";
+    document.getElementById('formModal').style.display = 'block';
+    document.getElementById('selectedLogo').innerText = "Selected Logo: #" + logoNumber;
+    document.getElementById('logoName').value = logoName;
+    document.getElementById('quantity').value = 1;
+    document.getElementById('color').value = "White";
+    updateTshirtColor();
+    updatePrice();
+  }
+
+  function closeForm() {
+    document.getElementById('formModal').style.display = 'none';
+  }
+
+  function updatePrice() {
+    const qty = parseInt(document.getElementById('quantity').value) || 0;
+    let total = qty * UNIT_PRICE;
+    let priceInfo = "Price includes delivery 🚚✅";
+
+    if (qty >= 2) {
+      total -= DISCOUNT;
+      priceInfo += " + Discount Applied 🎉";
+    }
+
+    document.getElementById('price').value = total;
+    document.getElementById('priceInfo').innerText = priceInfo;
+  }
+
+  function updateTshirtColor() {
+    const color = document.getElementById('color').value;
+    const overlay = document.getElementById('colorOverlay');
+
+    const colors = {
+      'White': '#ffffff',
+      'Black': '#000000',
+      'Light Brown': '#D2B48C'
+    };
+
+    overlay.style.backgroundColor = colors[color];
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('quantity').addEventListener('input', updatePrice);
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const data = {
+        logo: document.getElementById('logoName').value,
+        size: document.getElementById('size').value,
+        color: document.getElementById('color').value,
+        quantity: document.getElementById('quantity').value,
+        price: document.getElementById('price').value,
+        name: document.getElementById('name').value,
+        phone1: document.getElementById('phone1').value,
+        phone2: document.getElementById('phone2').value,
+        address: document.getElementById('address').value
+      };
+
+      const message =
+        `🧾 Order Details:\n\n` +
+        `🖼 Logo: ${data.logo}\n👕 Size: ${data.size}\n🎨 Color: ${data.color}\n🔢 Quantity: ${data.quantity}\n` +
+        `💰 Price: LKR ${data.price}\n\n👤 Name: ${data.name}\n📞 Phone 1: ${data.phone1}\n📞 Phone 2: ${data.phone2}\n🏠 Address: ${data.address}`;
+
+      const waUrl = `https://wa.me/+94701960281?text=${encodeURIComponent(message)}`;
+
+      document.getElementById('qrcode').innerHTML = "";
+      new QRCode(document.getElementById('qrcode'), { text: waUrl, width: 200, height: 200 });
+
+      document.getElementById('qrModal').style.display = 'block';
+    });
+  });
+
+  window.onclick = function(event) {
+    const formModal = document.getElementById('formModal');
+    const qrModal = document.getElementById('qrModal');
+    if (event.target === formModal) formModal.style.display = 'none';
+    if (event.target === qrModal) qrModal.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

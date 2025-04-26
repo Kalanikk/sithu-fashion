@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - Custom T-Shirts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fade-up {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-up {
+      animation: fade-up 1s ease-out both;
+    }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <section class="py-12 px-4 sm:px-6 lg:px-16">
+    <div class="max-w-6xl mx-auto text-center animate-fade-up">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-6">About Us</h2>
+      <p class="text-base sm:text-lg text-gray-600 mb-10">
+        Welcome to our T-shirt shop where creativity meets quality! 🎨👕 <br class="hidden sm:inline">
+        We specialize in custom t-shirt printing, giving you the freedom to bring your favorite designs and logos to life.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
+        <div class="animate-fade-up delay-100">
+          <h3 class="text-xl sm:text-2xl font-semibold mb-3">Custom Logo Printing</h3>
+          <p class="text-gray-600">
+            Want your own logo on a t-shirt? No problem! Just send us your design and we'll print it with precision on premium-quality fabric.
+          </p>
+        </div>
+        <div class="animate-fade-up delay-200">
+          <h3 class="text-xl sm:text-2xl font-semibold mb-3">Top-notch Quality</h3>
+          <p class="text-gray-600">
+            We use high-quality, breathable, and durable materials to ensure that every t-shirt feels as good as it looks.
+            Our prints are long-lasting and vibrant, wash after wash.
+          </p>
+        </div>
+        <div class="animate-fade-up delay-300">
+          <h3 class="text-xl sm:text-2xl font-semibold mb-3">Stylish Designs</h3>
+          <p class="text-gray-600">
+            Choose from a variety of styles — minimalistic, trendy, casual, or sporty.
+            Whether it's for events, gifts, or everyday wear, we've got your style covered.
+          </p>
+        </div>
+        <div class="animate-fade-up delay-400">
+          <h3 class="text-xl sm:text-2xl font-semibold mb-3">Your Style, Your Story</h3>
+          <p class="text-gray-600">
+            Every shirt we print tells a story — yours. Let's create something amazing together!
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 animate-fade-up delay-400">
+        <a href="in.html" class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 text-white font-semibold rounded-2xl shadow-md hover:bg-blue-700 transition-all duration-300">
+          Order Your Custom T-Shirt
+        </a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-image: url('er.jpg.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            color: white;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        .logo img {
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background: grey;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul a:hover {
+            color: orange;
+        }
+
+        .hero {
+            padding-top: 150px;
+        }
+
+        .hero h1 {
+            color: rgb(16, 16, 210);
+            font-size: 8vw;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: rgb(89, 129, 9);
+            font-size: 4vw;
+            padding: 0 10px;
+        }
+
+        table {
+            width: 90%;
+            margin: 40px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            color: black;
+            text-align: left;
+        }
+
+        th {
+            background: #444;
+            color: white;
+        }
+
+        button {
+            padding: 15px 30px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 10px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 7vw;
+            }
+
+            .hero p {
+                font-size: 4vw;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 10vw;
+            }
+
+            .hero p {
+                font-size: 5vw;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <script>
+        function sendSMSNotification(user, message) {
+            fetch("send_sms.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `user=${user}&message=${message}`
+            })
+            .then(response => response.text())
+            .then(data => alert("SMS Sent: " + data));
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo6.jpg.jpg" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <a href="home1.html">Home</a>
+                <a href="in.html">Order Now</a>
+                <a href="About.html">About Us</a>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1><i>Sithu Fashion</i></h1>
+        <p>Come see our beautiful shirt collection</p>
+    </div>
+</body>
+</html>
